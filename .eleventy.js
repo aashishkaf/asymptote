@@ -1,0 +1,16 @@
+module.exports = function(eleventyConfig) {
+  eleventyConfig.addPassthroughCopy("styles.css");
+
+  // Custom collection: only include files in the /posts folder
+  eleventyConfig.addCollection("posts", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("./posts/*.md").reverse();
+  });
+
+  return {
+    dir: {
+      input: ".",
+      includes: "_includes",
+      output: "_site"
+    }
+  };
+};
